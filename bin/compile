@@ -70,7 +70,6 @@ echo "Installing LittleCMS $LITTLECMS_VERSION" | arrow
 # LittleCMS dependency - for Pillow / PSD tools
 LITTLECMS_URL="https://download-pixelapse.s3.amazonaws.com/lcms-${LITTLECMS_VERSION}.tar.gz"
 curl --silent --max-time 60 --location "$LITTLECMS_URL" | tar xz -C $BUILD_DIR
-export LD_LIBRARY_PATH=/app/lib
 
 echo "Installation completed" | indent
 
@@ -78,3 +77,4 @@ echo "Building runtime environment for imagemagick" | arrow
 mkdir -p $BUILD_DIR/.profile.d
 echo "export PATH=\"\$HOME/bin:\$PATH\"" > $BUILD_DIR/.profile.d/imagemagick.sh
 echo "export LD_RUN_PATH=\"$lib_path:\$LD_RUN_PATH\"" > $BUILD_DIR/.profile.d/imagemagick.sh
+echo "export LD_LIBRARY_PATH=/app/lib" > $BUILD_DIR/.profile.d/imagemagick.sh
